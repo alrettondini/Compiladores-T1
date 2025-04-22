@@ -1,81 +1,80 @@
 lexer grammar JanderLexico;
 
-ALGORITMO : 'algoritmo';
-FIM_ALGORITMO : 'fim_algoritmo';
-DECLARE : 'declare';
-LITERAL : 'literal';
-INTEIRO : 'inteiro';
-LEIA : 'leia';
-ESCREVA : 'escreva';
-REAL : 'real';
-LOGICO : 'logico';
-SE : 'se';
+ALGORITMO: 'algoritmo';
+FIM_ALGORITMO: 'fim_algoritmo';
+DECLARE: 'declare';
+LITERAL: 'literal';
+INTEIRO: 'inteiro';
+LEIA: 'leia';
+ESCREVA: 'escreva';
+REAL: 'real';
+LOGICO: 'logico';
+SE: 'se';
 ENTAO: 'entao';
-SENAO : 'senao';
-FIM_SE : 'fim_se';
-CASO : 'caso';
-SEJA : 'seja';
-FIM_CASO : 'fim_caso';
-PARA : 'para';
-ATE : 'ate';
-FACA : 'faca';
-FIM_PARA : 'fim_para';
-ENQUANTO : 'enquanto';
-FIM_ENQUANTO : 'fim_enquanto';
-REGISTRO : 'registro';
-FIM_REGISTRO : 'fim_registro';
-TIPO : 'tipo';
-PROCEDIMENTO : 'procedimento';
-FIM_PROCEDIMENTO : 'fim_procedimento';
-VAR : 'var';
-FUNCAO : 'funcao';
-FIM_FUNCAO : 'fim_funcao';
-RETORNE : 'retorne';
-CONSTANTE : 'constante';
-VERDADEIRO : 'verdadeiro';
-FALSO : 'falso';
-
+SENAO: 'senao';
+FIM_SE: 'fim_se';
+CASO: 'caso';
+SEJA: 'seja';
+FIM_CASO: 'fim_caso';
+PARA: 'para';
+ATE: 'ate';
+FACA: 'faca';
+FIM_PARA: 'fim_para';
+ENQUANTO: 'enquanto';
+FIM_ENQUANTO: 'fim_enquanto';
+REGISTRO: 'registro';
+FIM_REGISTRO: 'fim_registro';
+TIPO: 'tipo';
+PROCEDIMENTO: 'procedimento';
+FIM_PROCEDIMENTO: 'fim_procedimento';
+VAR: 'var';
+FUNCAO: 'funcao';
+FIM_FUNCAO: 'fim_funcao';
+RETORNE: 'retorne';
+CONSTANTE: 'constante';
+VERDADEIRO: 'verdadeiro';
+FALSO: 'falso';
 
 fragment
-DIGITO: '0'..'9';
+DIGITO: '0' ..'9';
 
 NUMINT:
-    ('+'|'-')? DIGITO+;
+	('+' | '-')? DIGITO+;
 
 NUMREAL:
-    ('+'|'-')? DIGITO+ '.' DIGITO+;
+	('+' | '-')? DIGITO+ '.' DIGITO+;
 
 IDENT:
-    ('a'..'z'|'A'..'Z'|'_')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
+	('a' ..'z' | 'A' ..'Z' | '_') ('a' ..'z'	| 'A' ..'Z' | '0' ..'9'	| '_')*;
 
 CADEIA:
-    '\'' (ESC_SEQ | ~('\n'|'\''|'\\'))* '\'';
+	'\'' (ESC_SEQ | ~('\n' | '\'' | '\\'))* '\'';
 
-CADEIA_NAO_FECHADA: '"' ( ESC_SEQ | ~('\n'|'\''|'\\'|'"') )* '\n'
-	;
+CADEIA_NAO_FECHADA:
+	'"' (ESC_SEQ | ~('\n' | '\'' | '\\' | '"'))* '\n';
 
 fragment
 ESC_SEQ:
-    '\\\'';
+	'\\\'';
 
 COMENTARIO:
-    '{' ~('}'|'\n')* '}' { skip(); };
+	'{' ~('}' | '\n')* '}' { skip(); };
 
 COMENTARIO_NAO_FECHADO:
-    '{' ~('}'|'\n')* '\n';
+	'{' ~('}' | '\n')* '\n';
 
-WS: (' '|'\t'|'\r'|'\n') { skip(); };
+WS: (' ' | '\t' | '\r' | '\n') { skip(); };
 
-OP_REL	:	'>' | '>=' | '<' | '<=' | '<>' | '='
+OP_REL: '>' | '>=' | '<' | '<=' | '<>' | '='
 	;
-OP_ARIT	:	'+' | '-' | '*' | '/'
+OP_ARIT: '+' | '-' | '*' | '/'
 	;
-OP_LOGICO: 	'e' | 'ou' | 'nao'
+OP_LOGICO: 'e' | 'ou' | 'nao'
 	;
-DELIM	:	':'
+DELIM: ':'
 	;
-ABREPAR :	'('
+ABREPAR: '('
 	;
-FECHAPAR:	')'
+FECHAPAR: ')'
 	;
 ERRO: .;

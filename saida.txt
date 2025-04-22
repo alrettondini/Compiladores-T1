@@ -1,4 +1,0 @@
-<'algoritmo',algoritmo>
-<'declare',declare>
-<IDENT,notaProva1>
-Erro na linha 4: ,
